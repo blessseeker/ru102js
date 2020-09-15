@@ -6,7 +6,7 @@
   },
   "dataStores": {
     "redis": {
-      "host": "localhost",
+      "host": "0.0.0.0",
       "port": 6379,
       "password": null,
       "keyPrefix": "ru102js"

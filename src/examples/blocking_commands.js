@@ -1,11 +1,11 @@
-const redis = require('redis');
-const bluebird = require('bluebird');
+const redis = require("redis");
+const bluebird = require("bluebird");
 
 // Promisify all the functions exported by node_redis.
 bluebird.promisifyAll(redis);
 
 // Redis key that the producer and consumer will use to share data.
-const key = 'blockingdemo';
+const key = "blockingdemo";
 
 const startConsumer = async () => {
   let retryCount = 0;
@@ -13,7 +13,7 @@ const startConsumer = async () => {
 
   const consumerClient = redis.createClient({
     port: 6379,
-    host: '127.0.0.1',
+    host: "0.0.0.0",
     // password: 'password',
   });
 
@@ -26,12 +26,12 @@ const startConsumer = async () => {
     /* eslint-enable */
 
     if (response === null) {
-      console.log('consumer: queue was empty.');
+      console.log("consumer: queue was empty.");
       retryCount += 1;
 
       if (retryCount === 5) {
         done = true;
-        console.log('consumer: shutting down.');
+        console.log("consumer: shutting down.");
         consumerClient.quit();
       }
     } else {
@@ -48,7 +48,7 @@ const startProducer = async () => {
 
   const producerClient = redis.createClient({
     port: 6379,
-    host: '127.0.0.1',
+    host: "0.0.0.0",
     // password: 'password',
   });
 
@@ -64,7 +64,7 @@ const startProducer = async () => {
 
     // Stop after producing 20 numbers.
     if (n > 20) {
-      console.log('producer: shutting down.');
+      console.log("producer: shutting down.");
       clearInterval(producerInterval);
       producerClient.quit();
     }

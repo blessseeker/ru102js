@@ -1,10 +1,10 @@
-const redis = require('redis');
+const redis = require("redis");
 
 const connectWithPortAndHost = () => {
   // Connect with port and host.
   const client = redis.createClient({
     port: 6379,
-    host: '127.0.0.1',
+    host: "0.0.0.0",
   });
 
   // Send PING command expect PONG response.
@@ -24,7 +24,7 @@ const connectToDefaultPortAndHost = () => {
 const connectUsingURL = () => {
   // Connect using a URL format.
   const client = redis.createClient({
-    url: 'redis://127.0.0.1:6379',
+    url: "redis://0.0.0.0:6379",
   });
 
   // Send PING command expect PONG response.
@@ -35,9 +35,9 @@ const connectUsingURL = () => {
 const connectWithPassword = () => {
   // Connect and provide a password.
   const client = redis.createClient({
-    host: '127.0.0.1',
+    host: "0.0.0.0",
     port: 6379,
-    password: 'secretPassword',
+    password: "secretPassword",
   });
 
   // Send PING command expect PONG response.
@@ -47,12 +47,12 @@ const connectWithPassword = () => {
 
 const connectWithSSL = () => {
   const client = redis.createClient({
-    host: '127.0.0.1',
+    host: "0.0.0.0",
     port: 6379,
     tls: {
-      key: 'contents of key file',
-      cert: 'contents of cert file',
-      ca: ['contents of ca cert file'],
+      key: "contents of key file",
+      cert: "contents of cert file",
+      ca: ["contents of ca cert file"],
     },
   });
 
